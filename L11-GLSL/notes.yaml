@@ -1,0 +1,46 @@
+** vertexShader --> "vertexShader" ek GLSL (OpenGL Shading Language) ka program hota hai jo har vertex (3D object ke kone) par chalta hai. Iska kaam hota hai har vertex ki position ko process karna, jaise ki usko move karna, transform karna (rotate, scale, translate), ya phir uske attributes (jaise position, normal, uv) ko aage fragment shader tak bhejna. Ye shader decide karta hai ki 3D object ke vertices screen par kis jagah dikhai denge.
+
+
+
+** fragmentShader --> "fragmentShader" ek GLSL program hai jo har pixel (fragment) par chalta hai. Iska kaam hota hai ki object ke surface ka final color, transparency, aur dusre visual effects decide karna. Ye shader har pixel ke liye calculations karta hai, jaise lighting, texture mapping, ya color blending, aur output me screen par dikhne wala color return karta hai.
+
+
+
+** Types -->
+
+int -- 12, ...
+flot -- 12. or 12.0 , ....
+
+
+
+** Vectors -->
+
+vec2 -- x y
+vec3 -- x y z 
+vec4 -- rgba
+
+
+
+** Swizzling in GLSL -->
+
+vec3 pos = vec3(1.2, 2.4, 4.);
+vec2 newPos = pos.xy;
+
+
+
+** Attributes -->
+
+* Attributes contain 3 things --
+1. Positions - "Positions" batata hai ke har vertex 3D space me kis jagah par hai. Ye har vertex ka x, y, z coordinate hota hai, jo shape ki geometry define karta hai.
+
+2. Normal - "Normal" ek vector hota hai jo har vertex par surface ke perpendicular direction ko batata hai. Ye shading, lighting, aur reflection jaise effects ke liye use hota hai, kyunki isse pata chalta hai ki surface kis direction me face kar rahi hai.
+
+3. uv - "uv" har vertex ka 2D coordinate hota hai jo texture mapping ke liye use hota hai. Ye batata hai ki 3D surface par image (texture) ko kaise map kiya jaye, jaise kisi paper ko 3D object par chipkana.
+
+* Attributes sirf vertex shader me available hote hain, aur unhe sirf vertex shader me hi use kiya ja sakta hai. Agar unko fragment shader ya kisi aur shader me use karna ho toh "varying" ka use karke unhe pass kiya jata hai.
+
+
+
+** Uniforms --> "Uniforms" aise variables hote hain jo 3js (ya koi bhi host program) se shader (vertex ya fragment) me bheje jaate hain. Ye variables har vertex ya fragment ke liye ek hi value rakhte hain, jaise time, resolution, ya koi custom parameter. Uniforms ka use tab hota hai jab aapko shader me aisa data bhejna ho jo har frame ya user input ke saath change ho sakta hai, lekin sabhi vertices ya fragments ke liye same ho.
+
+(Simply, uniforms ek bridge ka kaam karte hain jo host program aur shader ke beech data bhejte hain.)
